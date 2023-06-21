@@ -3,11 +3,14 @@ package boardProject.MainBoard.repository;
 import boardProject.MainBoard.domain.Authority;
 import boardProject.MainBoard.domain.Status;
 import boardProject.MainBoard.domain.User;
+import org.springframework.stereotype.Service;
 
 import java.util.*;
 
+
 public class UserRepository {
     private static Map<String, User> storage=new HashMap<>();
+
 
     public void save(User user){
         storage.put(user.getId(),user);

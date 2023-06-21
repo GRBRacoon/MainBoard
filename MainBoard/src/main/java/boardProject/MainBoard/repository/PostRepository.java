@@ -5,6 +5,7 @@ import org.springframework.util.LinkedMultiValueMap;
 import org.springframework.util.MultiValueMap;
 
 import java.util.*;
+import java.util.stream.Collectors;
 
 public class PostRepository {
     MultiValueMap<PostTag,Post> board= new LinkedMultiValueMap<>();
@@ -21,10 +22,10 @@ public class PostRepository {
         return list;
     }
     public List searchAll(){
-        List<Post> list = new ArrayList<>();
-        EnumSet<PostTag> tags=EnumSet.allOf(PostTag.class);
-        for(PostTag tag:tags){
-            list.addAll(0, (Collection<? extends Post>) board.values());
+        List<Post> list=new ArrayList<>();
+        PostTag[] p=PostTag.values();
+        for(int i=0;i<p.length;i++) {
+            list.addAll(board.values().stream().toList().get(i));
         }
         return list;
     }
