@@ -1,12 +1,14 @@
 package boardProject.MainBoard.repository;
 
 import boardProject.MainBoard.domain.*;
+import org.springframework.stereotype.Repository;
 import org.springframework.util.LinkedMultiValueMap;
 import org.springframework.util.MultiValueMap;
 
 import java.util.*;
 import java.util.stream.Collectors;
 
+@Repository
 public class PostRepository {
     MultiValueMap<PostTag,Post> board= new LinkedMultiValueMap<>();
 

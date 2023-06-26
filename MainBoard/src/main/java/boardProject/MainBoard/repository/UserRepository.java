@@ -3,26 +3,33 @@ package boardProject.MainBoard.repository;
 import boardProject.MainBoard.domain.Authority;
 import boardProject.MainBoard.domain.Status;
 import boardProject.MainBoard.domain.User;
-import org.springframework.stereotype.Service;
+import jakarta.persistence.EntityManager;
+import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.stereotype.Repository;
 
+import javax.sql.DataSource;
 import java.util.*;
 
-
+@Repository
 public class UserRepository {
+    private final EntityManager em;
+
+
+    //db 커넥션 끝나면 닫기
+    //finally(close(conn,pstmt,rs)
+
+    public  UserRepository(EntityManager em){
+        this.em=em;
+    }
     private static Map<String, User> storage=new HashMap<>();
 
-
     public void save(User user){
-        storage.put(user.getId(),user);
+        em.persist(user);
     }
-    public boolean idCheck(String id){
-        boolean exist=false;
-        if(storage.containsKey(id)){
-            exist=true;
-        }
-        return exist;
-    }//해당 아이디가 존재하는지 확인
-
+    public User findUser(String id){
+        User user=em.find(User.class,id);
+        return user;
+    }
 
     public void setStatus(User user,Status status){
         User change= storage.get(user.getId());

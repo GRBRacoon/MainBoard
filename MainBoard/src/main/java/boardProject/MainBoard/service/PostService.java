@@ -5,12 +5,18 @@ import boardProject.MainBoard.domain.Post;
 import boardProject.MainBoard.domain.PostTag;
 import boardProject.MainBoard.domain.Tag;
 import boardProject.MainBoard.repository.PostRepository;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 
+@Service
 public class PostService {
 
-    PostRepository postRepository=new PostRepository();
+    public final PostRepository postRepository;
+
+    public PostService(PostRepository postRepository){
+        this.postRepository=postRepository;
+    }
     public void addPost(Post post){
         postRepository.save(post.getPostTag(),post);
     }

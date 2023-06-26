@@ -22,10 +22,7 @@ public class UserService {
         userRepository.save(user);
     }
 
-    public boolean userExist(String id){
-        boolean b= userRepository.idCheck(id);
-        return b;
-    }
+
     public void setStatus(User user,Status status){
         userRepository.setStatus(user,status);
     }
