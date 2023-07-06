@@ -63,7 +63,6 @@ public class UserRepository {
                 blockList.add(blocked);
             }
         }
-
         return blockList;
     }
 }

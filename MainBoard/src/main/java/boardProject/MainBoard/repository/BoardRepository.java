@@ -1,9 +1,7 @@
 package boardProject.MainBoard.repository;
 
-import boardProject.MainBoard.domain.Board;
-import boardProject.MainBoard.domain.Post;
-import boardProject.MainBoard.domain.PostTag;
-import boardProject.MainBoard.domain.Status;
+import boardProject.MainBoard.domain.*;
+import jakarta.persistence.EntityManager;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -11,15 +9,17 @@ import java.util.Map;
 
 public class BoardRepository {
 
-    Map<PostTag,Post> 
+    private final EntityManager em;
+    public BoardRepository(EntityManager em){
+        this.em= em;
+
+    }
+
     Board board;
     List searchByUserCode(Long userCode){
-        List<Post> list=new ArrayList<>();
-        for (Post write : board.getPostList()) {
-            if(write.getStatus()== Status.allow&&write.getUserCode()==userCode){
-                list.add(write);
-            }
-        }
+        List<Post> list=em.createQuery("select m from Post where m.UserCode= :UserCode", Post.class).
+                setParameter("UserCode",userCode).getResultList();
+
         return list;
     }
     List searchByName(String name){
@@ -62,6 +62,6 @@ public class BoardRepository {
         return  list;
     }
     List searchAll(){
-        return  board.getPostList();
+        return em.createQuery("select m from Post m",Post.class).getResultList();
     }
 }
