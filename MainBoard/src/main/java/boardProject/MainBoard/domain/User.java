@@ -25,7 +25,6 @@ public class User {
     private  String id;
     private  String password;
     private  String nickName;
-    private List<String> blockUserList;
     private Authority authority;
     private Status status;
     static protected String managerCode="power";
@@ -38,12 +37,6 @@ public class User {
         this.nickName = nickName;
         this.authority = Authority.user;
         this.status = allow;
-        blockUserList= new ArrayList<>();
     }
-    public void addBlock(User user){
-        blockUserList.add(user.getId());
-    }
-    public void deleteBlock(User user){
-        blockUserList.remove(user.getId());
-    }
+
 }

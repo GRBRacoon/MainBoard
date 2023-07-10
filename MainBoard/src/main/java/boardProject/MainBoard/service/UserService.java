@@ -26,22 +26,7 @@ public class UserService {
     public void setStatus(User user,Status status){
         userRepository.setStatus(user,status);
     }
-    public void setAuthority(User user, Authority authority){
-        userRepository.userSetAuthority(user,authority);
+    public void setAuthority(User user, Authority authority) {
+        userRepository.userSetAuthority(user, authority);
     }
-
-    public void addBlock(User user){
-        userRepository.addBlocked(user);
-    }
-    public void deleteBlock(User user){
-        userRepository.deleteBlocked(user);
-    }
-
-    public List blockedUsers(){
-        List<User> blocked= userRepository.blockedUser();
-        return blocked;
-    }
-
-
-
 }
