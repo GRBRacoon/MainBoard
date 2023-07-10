@@ -1,6 +1,8 @@
 package boardProject.MainBoard.repository;
 
 import boardProject.MainBoard.domain.*;
+import jakarta.persistence.EntityManager;
+import jakarta.persistence.Query;
 import org.springframework.stereotype.Repository;
 import org.springframework.util.LinkedMultiValueMap;
 import org.springframework.util.MultiValueMap;
@@ -10,17 +12,25 @@ import java.util.stream.Collectors;
 
 @Repository
 public class PostRepository {
+
+    EntityManager em;
     MultiValueMap<PostTag,Post> board= new LinkedMultiValueMap<>();
 
 
     public void save(PostTag tag,Post post){
-        board.add(tag,post);
+        em.persist(post);
     }
 
 
     public List searchByPostTag(PostTag postTag){
-        List<Post> list;
-        list=board.get(postTag);
+        String key =postTag.toString();
+        String jpql = "SELECT e FROM Entity e WHERE e.key = :key " +
+                "GROUP BY e.key " +
+                "HAVING COUNT(e) > 1";
+
+        List<Post> list = em.createQuery(jpql, Post.class)
+                .setParameter("key", key)
+                .getResultList();
         return list;
     }
     public List searchAll(){

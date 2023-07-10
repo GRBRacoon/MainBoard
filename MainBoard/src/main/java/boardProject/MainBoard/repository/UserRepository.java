@@ -39,15 +39,13 @@ public class UserRepository {
         change.setStatus(status);
         em.persist(change);
     }
-    public User userSetAuthority( User user, Authority authority){
+    public void userSetAuthority( User user, Authority authority){
         User change = em.find(User.class, user.getId());
         change.setAuthority(authority);
         Query query = em.createQuery("UPDATE User u SET u.authority = :authority WHERE u.id = :id");
         query.setParameter("authority", change.getAuthority());
         query.setParameter("id", change.getId());
         query.executeUpdate();
-
-        return user;
     }
 
 }
