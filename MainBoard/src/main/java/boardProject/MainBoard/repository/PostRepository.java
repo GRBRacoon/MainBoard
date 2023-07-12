@@ -14,8 +14,6 @@ import java.util.stream.Collectors;
 public class PostRepository {
 
     EntityManager em;
-    MultiValueMap<PostTag,Post> board= new LinkedMultiValueMap<>();
-
 
     public void save(PostTag tag,Post post){
         em.persist(post);
@@ -34,11 +32,7 @@ public class PostRepository {
         return list;
     }
     public List searchAll(){
-        List<Post> list=new ArrayList<>();
-        PostTag[] p=PostTag.values();
-        for(int i=0;i<p.length;i++) {
-            list.addAll(board.values().stream().toList().get(i));
-        }
+        List<Post> list=em.createQuery("select * from Post").getResultList();
         return list;
     }
     public List searchByUserId(List<Post> list,String userId){
@@ -82,15 +76,10 @@ public class PostRepository {
         }
         return list;
     }
-    public List searchByPostCode(List<Post> list,Long code){
-
-        for (int i=0;i< list.size();i++) {
-            Post write =list.get(i);
-            if(write.getStatus()== Status.allow&&write.getPostCode()==code){
-                list.add(write);
-            }
-        }
-        return list;
+    public Post searchByPostCode(Long code){
+        Post post;
+        post=em.find(Post.class,code);
+       return post;
     }
     public List searchByTag(List<Post> list, Tag tag){
 

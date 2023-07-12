@@ -44,7 +44,7 @@ public class PostService {
         list=postRepository.searchByName(tagList,name);
         return list;
     }
-    public List findBydate(PostTag postTag, int date1,int date2){
+    public List findByDate(PostTag postTag, int date1,int date2){
         List tagList;
         List<Post> list;
         if(postTag==PostTag.all){
@@ -69,17 +69,9 @@ public class PostService {
         list=postRepository.searchByData(tagList,data);
         return list;
     }
-    public List findByPostCode(PostTag postTag, Long code){
-        List tagList;
-        List<Post> list;
-        if(postTag==PostTag.all){
-            tagList=postRepository.searchAll();
-        }
-        else {
-            tagList = postRepository.searchByPostTag(postTag);
-        }
-        list=postRepository.searchByPostCode(tagList,code);
-        return list;
+    public Post findByPostCode( Long code){
+
+        return postRepository.searchByPostCode(code);
     }
     public List findByTag(PostTag postTag, Tag tag){
         List tagList;
