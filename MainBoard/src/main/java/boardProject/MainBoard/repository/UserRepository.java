@@ -43,8 +43,7 @@ public class UserRepository {
         User change = em.find(User.class, user.getId());
         change.setAuthority(authority);
         Query query = em.createQuery("UPDATE User u SET u.authority = :authority WHERE u.id = :id");
-        query.setParameter("authority", change.getAuthority());
-        query.setParameter("id", change.getId());
+        query.setParameter("authority", change.getAuthority()).setParameter("id", change.getId());
         query.executeUpdate();
     }
 

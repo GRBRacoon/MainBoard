@@ -22,6 +22,7 @@ public class User {
     @Id@GeneratedValue(strategy = GenerationType.IDENTITY)
      private  Long userCode;
 
+    @Id
     private  String id;
     private  String password;
     private  String nickName;
