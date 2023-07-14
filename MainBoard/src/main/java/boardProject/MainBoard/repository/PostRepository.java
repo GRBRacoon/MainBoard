@@ -3,6 +3,7 @@ package boardProject.MainBoard.repository;
 import boardProject.MainBoard.domain.*;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.Query;
+import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 import org.springframework.util.LinkedMultiValueMap;
 import org.springframework.util.MultiValueMap;

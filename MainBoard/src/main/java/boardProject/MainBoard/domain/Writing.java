@@ -13,6 +13,7 @@ public abstract class Writing {
     private String name;
     private String data;
     private String userId;
+    private String userName;
     private List<Comment> commentList;
     private int like;
     private Status status;

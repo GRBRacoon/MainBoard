@@ -85,5 +85,10 @@ public class PostService {
         list=postRepository.searchByTag(tagList,tag);
         return list;
     }
+    public List findByPostTag(PostTag postTag){
+        List list =postRepository.searchByPostTag(postTag);
+
+        return list;
+    }
 
 }

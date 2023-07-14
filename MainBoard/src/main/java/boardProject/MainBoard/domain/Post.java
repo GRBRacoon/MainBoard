@@ -19,14 +19,14 @@ public class Post extends Writing {
 
 
 
-    public Post(int date,String name,String data,String userId,Tag tag, PostTag postTag) {
+    public Post(int date,String name,String data,String userId,Tag tag, PostTag postTag,String userName) {
         this.setDate(date);
         this.setName(name);
         this.setStatus(Status.allow);
         this.setData(data);
         this.setUserId(userId);
         this.setLike(0);
-
+        this.setUserName(userName);
         this.postCode =postCount;
         postCount++;
         this.tag = tag;

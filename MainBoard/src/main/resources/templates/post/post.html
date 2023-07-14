@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>main</title>
+</head>
+<body>
+
+<div class="sideBar">
+    <nav>
+        <a href="humorPost.html">유머</a>
+        <a href="songPost.html">노래</a>
+        <a href="">장터</a>
+        <a href="">전체글</a>
+    </nav>
+
+</div>
+<table>
+    <thead>
+
+    </thead>
+    <!-- 게시물 리스트 출력 -->
+    <tbody>
+    <tr th:each="post : ${list.content}">
+        <td th:text="${post.name}"></td>
+        <td th:text="${post.userName}"></td>
+        <td th:text="${post.like}"></td>
+        <td th:text="${post.date}"></td>
+    </tr>
+    </tbody>
+</table>
+</body>
+</html>

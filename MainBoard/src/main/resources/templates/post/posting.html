@@ -5,22 +5,24 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
 </head>
+
 <body>
     <div>
-    <form action="" method="post">
-       
+    <form action="/postSubmit" method="post">
        <label for="tag">게시판 선택</label>
-       <select name="postTag" id="tag">
+       <select name="postTag" id="tag" name="postTag">
         <option value=" humor">humor</option>
         <option value="song">song</option>
         <option value="market">market</option>
-
-        
        </select>
-       <input type="text" placeholder="제목"> 
+       <input type="text" placeholder="제목" name="name"> 
        <br>
-       <input type="text" placeholder="내용을 입력하세요." style="width: 600px; height: 400px; text-align: left;" >
-
+       <input type="text" placeholder="내용을 입력하세요." name="data" style="width: 600px; height: 400px; text-align: left;" >
+       <input type="text" placeholder="작성자 이름" name="userName">
+       <input type="text" placeholder="작성자 id"  name="userId">
+       <input type="text" placeholder="시간" name="date">
+       <input type="text" placeholder="tag" name="tag">
+       
         <br>
 
         <button type="submit">글 올리기</button>
